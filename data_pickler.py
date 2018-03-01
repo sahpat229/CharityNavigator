@@ -52,9 +52,14 @@ for line in reader:
 data, onehot_data, labels = [np.array(arr) for arr in 
     [data, onehot_data, labels]]
 
+#for label in [-1, 0, 1, 2, 3, 4]:
+#    print(np.sum(labels==label) / float(len(labels)))
 
 data = np.concatenate((data, onehot_data), axis=1)
 X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.20)
+
+for label in [-1, 0, 1, 2, 3, 4]:
+    print(np.sum(y_train==label) / float(len(y_train)))
 
 data_train, data_test = [arr[:, 0:len(features)] for arr in [X_train, X_test]]
 scaler = sklearn.preprocessing.StandardScaler()
